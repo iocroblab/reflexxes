@@ -1,0 +1,63 @@
+Source: reflexxes
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders: Leopold Palomo-Avellaneda <leo@alaxarxa.net>
+Section: libs
+Priority: optional
+Build-Depends: debhelper (>= 9),
+               cmake,
+Standards-Version: 3.9.6
+Vcs-Browser: https://anonscm.debian.org/cgit/debian-science/packages/reflexxes.git
+Vcs-Git: git://anonscm.debian.org/debian-science/packages/reflexxes.git
+Homepage: http://www.reflexxes.ws
+
+Package: libreflexxes-dev
+Multi-Arch: same
+Architecture: any
+Section: libdevel
+Depends: libreflexxes1 (= ${binary:Version}),
+         ${misc:Depends},
+Description: Reflexxes Motion Libraries development files
+ The Reflexxes Motion Libraries provide instantaneous trajectory generation
+ capabilities for motion control systems. Robots and servo drive controllers
+ become capable of reacting instantaneously to unforeseen sensor signals and
+ events. This package contains the development files.
+
+Package: libreflexxes1
+Multi-Arch: same
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: Reflexxes Motion Libraries 
+ The Reflexxes Motion Libraries provide instantaneous trajectory generation
+ capabilities for motion control systems. Robots and servo drive controllers
+ become capable of reacting instantaneously to unforeseen sensor signals and
+ events. This enables the realization of new features for control systems
+ additional components.  This package contains the library itself.
+
+Package: reflexxes-demos
+Architecture: any
+Section: science
+Depends: ${misc:Depends},
+Description: Reflexxes Motion Libraries demos
+ The Reflexxes Motion Libraries provide instantaneous trajectory generation
+ capabilities for motion control systems. Robots and servo drive controllers
+ become capable of reacting instantaneously to unforeseen sensor signals and
+ events. This enables the realization of new features for control systems   
+ additional components. This package contains a set of demos of the library.
+
+Package: libreflexxes1-dbg
+Multi-Arch: same
+Architecture: any
+Section: debug
+Priority: extra
+Depends: ${misc:Depends},
+         libreflexxes1 (= ${binary:Version}),
+         libreflexxes-dev
+Description: Reflexxes Motion Libraries debug symbols
+ The Reflexxes Motion Libraries provide instantaneous trajectory generation
+ capabilities for motion control systems. Robots and servo drive controllers
+ become capable of reacting instantaneously to unforeseen sensor signals and
+ events. This enables the realization of new features for control systems   
+ additional components. This package contains the debug symbols for the
+ library.
+

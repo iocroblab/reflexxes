@@ -1,0 +1,38 @@
+Debug packages
+======================================================================
+
+This is a package with debug symbols. The purpose of a -dbg package
+is to provide a mapping between binary addresses and source line 
+numbers/variable names, not to provide the source itself [1].
+
+The source itself is in the source package, which can be installed
+with "apt-get source ompl" if you have a deb-src line in
+/etc/apt/sources.list.  This installs it in the current directory
+owned by the current user (i.e. conveniently editable), while apt-get
+install files are normally owned and editable only by root.
+
+It's working if your debug backtraces are of the form: 
+
+#3  0x0000000000ed4188 in SGPropertyNode::set_string (this=0x7eaa480,
+     val=0x20d79a0 "Shaders/cloud-shadowfunc.frag")
+     at /home/palmer/fs_dev/git/simgear/simgear/props/props.cxx:511   
+
+(note the file name and line number) rather than
+
+#2  0x00007ffff5aef83d in g_input_stream_read ()
+    from /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0
+#3  0x00007ffff669c3e5 in ?? ()
+    from /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0
+
+To make use of this package install the reflexxes source package following
+the instructions above and configure gdb [2] (or qtcreator [3], or
+whatever IDE you use) to use it.
+
+Leopold Palomo-Avellaneda <leo@alaxarxa.net>
+Oct 2015
+
+-----
+[1] https://lists.debian.org/debian-mentors/2014/05/msg00194.html
+[2] https://sourceware.org/gdb/onlinedocs/gdb/Source-Path.html
+[3] http://qt-project.org/doc/qtcreator-2.8/creator-debugger-engines.html
+

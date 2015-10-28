@@ -1,0 +1,42 @@
+From: Leopold Palomo-Avellaneda <leopold.palomo@upc.edu>
+Date: Wed, 28 Oct 2015 15:40:39 +0100
+Subject: Added static library and better install places
+
+---
+ CMakeLists.txt | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 32a0b45..df31a9d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -25,9 +25,13 @@ set_target_properties( Reflexxes PROPERTIES
+   OUTPUT_NAME reflexxes
+ # Set accumulated compilation flags: (.so and .a)
+   LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}"
+-  INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib"
+   CLEAN_DIRECT_OUTPUT 1)
+ 
++add_library(Reflexxes_static STATIC ${REFLEXXES_SRC})
++set_target_properties(Reflexxes_static PROPERTIES
++   OUTPUT_NAME reflexxes CLEAN_DIRECT_OUTPUT 1)
++
++
+ add_executable(01_RMLPositionSampleApplications 
+ 	src/RMLPositionSampleApplications/01_RMLPositionSampleApplication.cpp)
+ target_link_libraries(01_RMLPositionSampleApplications Reflexxes)
+@@ -62,10 +66,12 @@ target_link_libraries(08_RMLVelocitySampleApplication Reflexxes)
+ 
+ 
+ install(FILES ${REFLEXXES_INCLUDES} DESTINATION include/Reflexxes)
+-install(TARGETS Reflexxes DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Reflexxes)
++install(TARGETS Reflexxes Reflexxes_static 
++	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ install(TARGETS 01_RMLPositionSampleApplications 02_RMLPositionSampleApplications
+ 		03_RMLPositionSampleApplications 04_RMLVelocitySampleApplication 
+ 		05_RMLVelocitySampleApplication 06_RMLVelocitySampleApplication 
+ 		07_RMLPositionSampleApplications 08_RMLVelocitySampleApplication
+-		DESTINATION bin)
++		RUNTIME DESTINATION bin)
+ 

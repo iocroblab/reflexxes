@@ -1,0 +1,17 @@
+From: Leopold Palomo-Avellaneda <leopold.palomo@upc.edu>
+Date: Tue, 27 Oct 2015 16:50:13 +0100
+Subject: Added symbolic link
+
+---
+ Reflexxes | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 120000 Reflexxes
+
+diff --git a/Reflexxes b/Reflexxes
+new file mode 120000
+index 0000000..2996fba
+--- /dev/null
++++ b/Reflexxes
+@@ -0,0 +1 @@
++include
+\ No newline at end of file
