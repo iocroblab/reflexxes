@@ -16,7 +16,7 @@ Architecture: any
 Section: libdevel
 Depends: libreflexxes1 (= ${binary:Version}),
          ${misc:Depends},
-Description: Reflexxes Motion Libraries development files
+Description: Type II Reflexxes Motion Library development files
  The Reflexxes Motion Libraries provide instantaneous trajectory generation
  capabilities for motion control systems. Robots and servo drive controllers
  become capable of reacting instantaneously to unforeseen sensor signals and
@@ -27,7 +27,7 @@ Multi-Arch: same
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
-Description: Reflexxes Motion Libraries 
+Description: Type II Reflexxes Motion Library  
  The Reflexxes Motion Libraries provide instantaneous trajectory generation
  capabilities for motion control systems. Robots and servo drive controllers
  become capable of reacting instantaneously to unforeseen sensor signals and
@@ -37,8 +37,8 @@ Description: Reflexxes Motion Libraries
 Package: reflexxes-demos
 Architecture: any
 Section: science
-Depends: ${misc:Depends},
-Description: Reflexxes Motion Libraries demos
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Type II Reflexxes Motion Library demos
  The Reflexxes Motion Libraries provide instantaneous trajectory generation
  capabilities for motion control systems. Robots and servo drive controllers
  become capable of reacting instantaneously to unforeseen sensor signals and
@@ -53,7 +53,7 @@ Priority: extra
 Depends: ${misc:Depends},
          libreflexxes1 (= ${binary:Version}),
          libreflexxes-dev
-Description: Reflexxes Motion Libraries debug symbols
+Description: Type II Reflexxes Motion Library debug symbols
  The Reflexxes Motion Libraries provide instantaneous trajectory generation
  capabilities for motion control systems. Robots and servo drive controllers
  become capable of reacting instantaneously to unforeseen sensor signals and
