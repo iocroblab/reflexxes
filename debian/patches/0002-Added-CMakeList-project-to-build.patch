@@ -34,9 +34,9 @@ index 0000000..4aa0360
 +
 +add_library(Reflexxes SHARED ${REFLEXXES_SRC})
 +set_target_properties( Reflexxes PROPERTIES
-+  SOVERSION
++  VERSION
 +"${REFLEXXES_VERSION_MAJOR}.${REFLEXXES_VERSION_MINOR}.${REFLEXXES_VERSION_PATCH}"
-+  VERSION "${REFLEXXES_VERSION_MAJOR}"
++  SOVERSION "${REFLEXXES_VERSION_MAJOR}"
 +  OUTPUT_NAME reflexxes
 +# Set accumulated compilation flags: (.so and .a)
 +  LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}"
