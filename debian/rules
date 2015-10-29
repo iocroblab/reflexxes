@@ -37,3 +37,6 @@ override_dh_install:
 	mkdir -p debian/tmp/usr/share/doc/libreflexxes1-dbg && cp debian/README.Debug debian/tmp/usr/share/doc/libreflexxes1-dbg/
 	dh_install --list-missing
 
+override_dh_strip:
+	dh_strip --dbg-package=libreflexxes1-dbg
+
