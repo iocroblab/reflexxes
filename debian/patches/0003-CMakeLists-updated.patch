@@ -7,7 +7,7 @@ Subject: CMakeLists updated
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 4aa0360..22781d4 100644
+index 19ef8a5..e55b414 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -63,5 +63,9 @@ target_link_libraries(08_RMLVelocitySampleApplication Reflexxes)

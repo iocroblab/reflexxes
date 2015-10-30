@@ -3,9 +3,9 @@ Date: Tue, 27 Oct 2015 16:50:13 +0100
 Subject: Added symbolic link
 
 ---
- Reflexxes | 1 +
+ RML | 1 +
  1 file changed, 1 insertion(+)
- create mode 120000 Reflexxes
+ create mode 120000 RML
 
 diff --git a/RML b/RML
 new file mode 120000

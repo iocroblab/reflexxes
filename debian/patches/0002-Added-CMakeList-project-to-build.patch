@@ -9,7 +9,7 @@ Subject: Added CMakeList project to build
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 new file mode 100644
-index 0000000..4aa0360
+index 0000000..19ef8a5
 --- /dev/null
 +++ b/CMakeLists.txt
 @@ -0,0 +1,67 @@

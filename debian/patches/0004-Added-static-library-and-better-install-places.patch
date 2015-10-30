@@ -7,7 +7,7 @@ Subject: Added static library and better install places
  1 file changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 32a0b45..df31a9d 100644
+index e55b414..cfd089f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -25,9 +25,13 @@ set_target_properties( Reflexxes PROPERTIES

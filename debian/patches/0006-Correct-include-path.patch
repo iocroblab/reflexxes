@@ -1,0 +1,21 @@
+From: Leopold Palomo-Avellaneda <leopold.palomo@upc.edu>
+Date: Fri, 30 Oct 2015 11:30:17 +0100
+Subject: Correct include path
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index cfd089f..31447af 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -11,7 +11,7 @@ set(REFLEXXES_VERSION_MAJOR 1)
+ set(REFLEXXES_VERSION_MINOR 2)
+ set(REFLEXXES_VERSION_PATCH 6)
+ 
+-include_directories(include)
++include_directories(${PROJECT_SOURCE_DIR})
+ include(GNUInstallDirs)
+ 
+ file( GLOB REFLEXXES_INCLUDES ${PROJECT_SOURCE_DIR}/include/*.h )
