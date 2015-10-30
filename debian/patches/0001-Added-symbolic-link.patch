@@ -7,11 +7,11 @@ Subject: Added symbolic link
  1 file changed, 1 insertion(+)
  create mode 120000 Reflexxes
 
-diff --git a/Reflexxes b/Reflexxes
+diff --git a/RML b/RML
 new file mode 120000
 index 0000000..2996fba
 --- /dev/null
-+++ b/Reflexxes
++++ b/RML
 @@ -0,0 +1 @@
 +include
 \ No newline at end of file
