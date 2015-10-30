@@ -11,7 +11,7 @@ index 32a0b45..df31a9d 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -25,9 +25,13 @@ set_target_properties( Reflexxes PROPERTIES
-   OUTPUT_NAME reflexxes
+   OUTPUT_NAME ReflexxesTypeII
  # Set accumulated compilation flags: (.so and .a)
    LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}"
 -  INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib"
@@ -19,7 +19,7 @@ index 32a0b45..df31a9d 100644
  
 +add_library(Reflexxes_static STATIC ${REFLEXXES_SRC})
 +set_target_properties(Reflexxes_static PROPERTIES
-+   OUTPUT_NAME reflexxes CLEAN_DIRECT_OUTPUT 1)
++   OUTPUT_NAME ReflexxesTypeII CLEAN_DIRECT_OUTPUT 1)
 +
 +
  add_executable(01_RMLPositionSampleApplications 
@@ -28,7 +28,7 @@ index 32a0b45..df31a9d 100644
 @@ -62,10 +66,12 @@ target_link_libraries(08_RMLVelocitySampleApplication Reflexxes)
  
  
- install(FILES ${REFLEXXES_INCLUDES} DESTINATION include/Reflexxes)
+ install(FILES ${REFLEXXES_INCLUDES} DESTINATION include/RML)
 -install(TARGETS Reflexxes DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Reflexxes)
 +install(TARGETS Reflexxes Reflexxes_static 
 +	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
