@@ -12,7 +12,7 @@ index 4aa0360..22781d4 100644
 +++ b/CMakeLists.txt
 @@ -63,5 +63,9 @@ target_link_libraries(08_RMLVelocitySampleApplication Reflexxes)
  
- install(FILES ${REFLEXXES_INCLUDES} DESTINATION include/Reflexxes)
+ install(FILES ${REFLEXXES_INCLUDES} DESTINATION include/RML)
  install(TARGETS Reflexxes DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Reflexxes)
 -
 +install(TARGETS 01_RMLPositionSampleApplications 02_RMLPositionSampleApplications
