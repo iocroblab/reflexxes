@@ -1,0 +1,24 @@
+From: Leopold Palomo-Avellaneda <leopold.palomo@upc.edu>
+Date: Fri, 30 Oct 2015 12:02:38 +0100
+Subject: Added pkgconfig stuff
+
+---
+ CMakeLists.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 31447af..ef7d3e0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -75,3 +75,11 @@ install(TARGETS 01_RMLPositionSampleApplications 02_RMLPositionSampleApplication
+ 		07_RMLPositionSampleApplications 08_RMLVelocitySampleApplication
+ 		RUNTIME DESTINATION bin)
+ 
++set(PKG_NAME "reflexxes")      
++set(PKG_DESC "The Type II Reflexxes Motion Libraries")
++set(PKG_REFLEXXES_LIBS "-lReflexxesTypeII")
++set(pkg_conf_file "reflexxes.pc")
++configure_file("${pkg_conf_file}.in" "${pkg_conf_file}" @ONLY)   
++install(FILES "${PROJECT_BINARY_DIR}/${pkg_conf_file}"
++    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig/
++    RENAME "reflexxes.pc")

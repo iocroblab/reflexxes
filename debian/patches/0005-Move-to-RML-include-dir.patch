@@ -58,7 +58,7 @@ Subject: Move to RML include dir
  ...IIRMLVelocityIsPhaseSynchronizationPossible.cpp | 14 +++++++-------
  src/TypeIIRML/TypeIIRMLVelocityMethods.cpp         | 16 ++++++++--------
  ...eIIRMLVelocitySetupPhaseSyncSelectionVector.cpp |  8 ++++----
- 56 files changed, 220 insertions(+), 220 deletions(-)
+ 55 files changed, 219 insertions(+), 219 deletions(-)
 
 diff --git a/include/RMLInputParameters.h b/include/RMLInputParameters.h
 index 36d5b36..e780470 100644

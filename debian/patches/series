@@ -4,3 +4,4 @@
 0004-Added-static-library-and-better-install-places.patch
 0005-Move-to-RML-include-dir.patch
 0006-Correct-include-path.patch
+0007-Added-pkgconfig-stuff.patch
