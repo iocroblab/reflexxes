@@ -2,4 +2,3 @@
 0002-Added-CMakeList-project-to-build.patch
 0003-CMakeLists-updated.patch
 0005-Added-static-library-and-better-install-places.patch
-0006-Added-pkgconfig-stuff.patch
