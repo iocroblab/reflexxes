@@ -1,0 +1,1118 @@
+From: Leopold Palomo-Avellaneda <leopold.palomo@upc.edu>
+Date: Fri, 30 Oct 2015 11:15:45 +0100
+Subject: Move to RML include dir
+
+---
+ debian/patching_includes.sh                        |  2 +-
+ include/RMLInputParameters.h                       |  2 +-
+ include/RMLOutputParameters.h                      |  2 +-
+ include/RMLPositionFlags.h                         |  2 +-
+ include/RMLPositionInputParameters.h               |  4 ++--
+ include/RMLPositionOutputParameters.h              |  2 +-
+ include/RMLVelocityFlags.h                         |  2 +-
+ include/RMLVelocityInputParameters.h               |  2 +-
+ include/RMLVelocityOutputParameters.h              |  2 +-
+ include/ReflexxesAPI.h                             | 14 +++++++-------
+ include/TypeIIRMLDecisionTree1A.h                  |  2 +-
+ include/TypeIIRMLDecisionTree2.h                   |  2 +-
+ include/TypeIIRMLPolynomial.h                      |  2 +-
+ include/TypeIIRMLPosition.h                        | 20 ++++++++++----------
+ include/TypeIIRMLStep1IntermediateProfiles.h       |  2 +-
+ include/TypeIIRMLStep1Profiles.h                   |  2 +-
+ include/TypeIIRMLStep2IntermediateProfiles.h       |  4 ++--
+ include/TypeIIRMLStep2Profiles.h                   |  4 ++--
+ include/TypeIIRMLStep2WithoutSynchronization.h     |  6 +++---
+ include/TypeIIRMLVelocity.h                        | 10 +++++-----
+ .../01_RMLPositionSampleApplication.cpp            |  8 ++++----
+ .../02_RMLPositionSampleApplication.cpp            |  8 ++++----
+ .../03_RMLPositionSampleApplication.cpp            |  8 ++++----
+ .../07_RMLPositionSampleApplication.cpp            |  8 ++++----
+ .../04_RMLVelocitySampleApplication.cpp            |  8 ++++----
+ .../05_RMLVelocitySampleApplication.cpp            |  8 ++++----
+ .../06_RMLVelocitySampleApplication.cpp            |  8 ++++----
+ .../08_RMLVelocitySampleApplication.cpp            |  8 ++++----
+ src/TypeIIRML/ReflexxesAPI.cpp                     | 18 +++++++++---------
+ .../TypeIIRMLCalculatePositionalExtrems.cpp        | 10 +++++-----
+ src/TypeIIRML/TypeIIRMLDecisionTree1A.cpp          | 12 ++++++------
+ src/TypeIIRML/TypeIIRMLDecisionTree1B.cpp          | 10 +++++-----
+ src/TypeIIRML/TypeIIRMLDecisionTree1C.cpp          | 12 ++++++------
+ src/TypeIIRML/TypeIIRMLDecisionTree2.cpp           | 12 ++++++------
+ src/TypeIIRML/TypeIIRMLDecisions.cpp               |  4 ++--
+ src/TypeIIRML/TypeIIRMLFallBackStrategy.cpp        | 16 ++++++++--------
+ .../TypeIIRMLIsPhaseSynchronizationPossible.cpp    | 10 +++++-----
+ src/TypeIIRML/TypeIIRMLPolynomial.cpp              |  4 ++--
+ src/TypeIIRML/TypeIIRMLPosition.cpp                | 16 ++++++++--------
+ src/TypeIIRML/TypeIIRMLQuicksort.cpp               |  2 +-
+ .../TypeIIRMLSetupModifiedSelectionVector.cpp      |  6 +++---
+ src/TypeIIRML/TypeIIRMLStep1.cpp                   | 22 +++++++++++-----------
+ .../TypeIIRMLStep1IntermediateProfiles.cpp         |  2 +-
+ src/TypeIIRML/TypeIIRMLStep1Profiles.cpp           |  4 ++--
+ src/TypeIIRML/TypeIIRMLStep2.cpp                   | 12 ++++++------
+ .../TypeIIRMLStep2IntermediateProfiles.cpp         |  8 ++++----
+ .../TypeIIRMLStep2PhaseSynchronization.cpp         |  6 +++---
+ src/TypeIIRML/TypeIIRMLStep2Profiles.cpp           |  6 +++---
+ .../TypeIIRMLStep2WithoutSynchronization.cpp       | 14 +++++++-------
+ src/TypeIIRML/TypeIIRMLStep3.cpp                   | 10 +++++-----
+ src/TypeIIRML/TypeIIRMLVelocity.cpp                | 16 ++++++++--------
+ ...TypeIIRMLVelocityCalculatePositionalExtrems.cpp | 12 ++++++------
+ .../TypeIIRMLVelocityFallBackStrategy.cpp          |  6 +++---
+ ...IIRMLVelocityIsPhaseSynchronizationPossible.cpp | 14 +++++++-------
+ src/TypeIIRML/TypeIIRMLVelocityMethods.cpp         | 16 ++++++++--------
+ ...eIIRMLVelocitySetupPhaseSyncSelectionVector.cpp |  8 ++++----
+ 56 files changed, 220 insertions(+), 220 deletions(-)
+
+diff --git a/debian/patching_includes.sh b/debian/patching_includes.sh
+index 25b8984..fb2b821 100644
+--- a/debian/patching_includes.sh
++++ b/debian/patching_includes.sh
+@@ -5,6 +5,6 @@ for p in *.h; do
+ 	files="$(grep -lRF $p ../src/*)"
+ 	for f in $files; do
+ 		echo "Patching $f"
+-		sed -i "s/include <$p>/include <Reflexxes\/$p>/" $f ;
++		sed -i "s/include <$p>/include <RML\/$p>/" $f ;
+ 	done
+ done
+diff --git a/include/RMLInputParameters.h b/include/RMLInputParameters.h
+index 36d5b36..e780470 100644
+--- a/include/RMLInputParameters.h
++++ b/include/RMLInputParameters.h
+@@ -50,7 +50,7 @@
+ #define __RMLInputParameters__
+ 
+ 
+-#include <RMLVector.h>
++#include <RML/RMLVector.h>
+ #include <string.h>
+ #include <stdio.h>
+ 
+diff --git a/include/RMLOutputParameters.h b/include/RMLOutputParameters.h
+index 4f90fff..2a42d68 100644
+--- a/include/RMLOutputParameters.h
++++ b/include/RMLOutputParameters.h
+@@ -50,7 +50,7 @@
+ #define __RMLOutputParameters__
+ 
+ 
+-#include <RMLVector.h>
++#include <RML/RMLVector.h>
+ #include <string.h>
+ 
+ 
+diff --git a/include/RMLPositionFlags.h b/include/RMLPositionFlags.h
+index c3c3dad..5c3d1ed 100644
+--- a/include/RMLPositionFlags.h
++++ b/include/RMLPositionFlags.h
+@@ -48,7 +48,7 @@
+ #define __RMLPositionFlags__
+ 
+ 
+-#include <RMLFlags.h>
++#include <RML/RMLFlags.h>
+ 
+ 
+ //  ---------------------- Doxygen info ----------------------
+diff --git a/include/RMLPositionInputParameters.h b/include/RMLPositionInputParameters.h
+index 63ef6de..fe724a0 100644
+--- a/include/RMLPositionInputParameters.h
++++ b/include/RMLPositionInputParameters.h
+@@ -50,8 +50,8 @@
+ #define __RMLPositionInputParameters__
+ 
+ 
+-#include <RMLInputParameters.h>
+-#include <RMLVector.h>
++#include <RML/RMLInputParameters.h>
++#include <RML/RMLVector.h>
+ #include <string.h>
+ #include <math.h>
+ 
+diff --git a/include/RMLPositionOutputParameters.h b/include/RMLPositionOutputParameters.h
+index 6993cfb..933e9a1 100644
+--- a/include/RMLPositionOutputParameters.h
++++ b/include/RMLPositionOutputParameters.h
+@@ -50,7 +50,7 @@
+ #define __RMLPositionOutputParameters__
+ 
+ 
+-#include <RMLOutputParameters.h>
++#include <RML/RMLOutputParameters.h>
+ 
+ 
+ //  ---------------------- Doxygen info ----------------------
+diff --git a/include/RMLVelocityFlags.h b/include/RMLVelocityFlags.h
+index e8c8aec..24b7a0a 100644
+--- a/include/RMLVelocityFlags.h
++++ b/include/RMLVelocityFlags.h
+@@ -48,7 +48,7 @@
+ #define __RMLVelocityFlags__
+ 
+ 
+-#include <RMLFlags.h>
++#include <RML/RMLFlags.h>
+ 
+ 
+ //  ---------------------- Doxygen info ----------------------
+diff --git a/include/RMLVelocityInputParameters.h b/include/RMLVelocityInputParameters.h
+index c005e64..b19b88b 100644
+--- a/include/RMLVelocityInputParameters.h
++++ b/include/RMLVelocityInputParameters.h
+@@ -50,7 +50,7 @@
+ #define __RMLVelocityInputParameters__
+ 
+ 
+-#include <RMLInputParameters.h>
++#include <RML/RMLInputParameters.h>
+ #include <math.h>
+ 
+ 
+diff --git a/include/RMLVelocityOutputParameters.h b/include/RMLVelocityOutputParameters.h
+index ddf9843..083eff8 100644
+--- a/include/RMLVelocityOutputParameters.h
++++ b/include/RMLVelocityOutputParameters.h
+@@ -50,7 +50,7 @@
+ #define __RMLVelocityOutputParameters__
+ 
+ 
+-#include <RMLOutputParameters.h>
++#include <RML/RMLOutputParameters.h>
+ 
+ 
+ //  ---------------------- Doxygen info ----------------------
+diff --git a/include/ReflexxesAPI.h b/include/ReflexxesAPI.h
+index cbfa49d..661d864 100644
+--- a/include/ReflexxesAPI.h
++++ b/include/ReflexxesAPI.h
+@@ -43,13 +43,13 @@
+ #define __ReflexxesAPI__
+ 
+ 
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
+-#include <RMLPositionFlags.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLVelocityFlags.h>
+-#include <RMLVector.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
++#include <RML/RMLPositionFlags.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLVelocityFlags.h>
++#include <RML/RMLVector.h>
+ 
+ 
+ //  ---------------------- Doxygen info ----------------------
+diff --git a/include/TypeIIRMLDecisionTree1A.h b/include/TypeIIRMLDecisionTree1A.h
+index 501ccf5..d0da45c 100644
+--- a/include/TypeIIRMLDecisionTree1A.h
++++ b/include/TypeIIRMLDecisionTree1A.h
+@@ -55,7 +55,7 @@
+ #ifndef __TypeIIRMLDecisionTree1A__
+ #define __TypeIIRMLDecisionTree1A__
+ 
+-#include <TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
+ 
+ 
+ namespace TypeIIRMLMath
+diff --git a/include/TypeIIRMLDecisionTree2.h b/include/TypeIIRMLDecisionTree2.h
+index 47fed32..bb1b58f 100644
+--- a/include/TypeIIRMLDecisionTree2.h
++++ b/include/TypeIIRMLDecisionTree2.h
+@@ -56,7 +56,7 @@
+ #define __TypeIIRMLDecisionTree2__
+ 
+ 
+-#include <TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLPolynomial.h>
+ 
+ 
+ namespace TypeIIRMLMath
+diff --git a/include/TypeIIRMLPolynomial.h b/include/TypeIIRMLPolynomial.h
+index c56082f..8f8e455 100644
+--- a/include/TypeIIRMLPolynomial.h
++++ b/include/TypeIIRMLPolynomial.h
+@@ -47,7 +47,7 @@
+ #define __TypeIIRMLPolynomial__
+ 
+ 
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLMath.h>
+ 
+ namespace TypeIIRMLMath
+ {
+diff --git a/include/TypeIIRMLPosition.h b/include/TypeIIRMLPosition.h
+index 9163a82..9ab3655 100644
+--- a/include/TypeIIRMLPosition.h
++++ b/include/TypeIIRMLPosition.h
+@@ -47,16 +47,16 @@
+ #define __TypeIIRMLPosition__
+ 
+ 
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
+-#include <RMLPositionFlags.h>
+-#include <RMLVelocityFlags.h>
+-#include <RMLVector.h>
+-#include <TypeIIRMLPolynomial.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLVelocity.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
++#include <RML/RMLPositionFlags.h>
++#include <RML/RMLVelocityFlags.h>
++#include <RML/RMLVector.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLVelocity.h>
+ 
+ 
+ using namespace TypeIIRMLMath;
+diff --git a/include/TypeIIRMLStep1IntermediateProfiles.h b/include/TypeIIRMLStep1IntermediateProfiles.h
+index a796ae4..5833531 100644
+--- a/include/TypeIIRMLStep1IntermediateProfiles.h
++++ b/include/TypeIIRMLStep1IntermediateProfiles.h
+@@ -48,7 +48,7 @@
+ #ifndef __TypeIIRMLStep1IntermediateProfiles__
+ #define __TypeIIRMLStep1IntermediateProfiles__
+ 
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLMath.h>
+ 
+ 
+ namespace TypeIIRMLMath
+diff --git a/include/TypeIIRMLStep1Profiles.h b/include/TypeIIRMLStep1Profiles.h
+index f2de694..a1af1af 100644
+--- a/include/TypeIIRMLStep1Profiles.h
++++ b/include/TypeIIRMLStep1Profiles.h
+@@ -53,7 +53,7 @@
+ #define __TypeIIRMLStep1Profiles__
+ 
+ 
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLMath.h>
+ 
+ 
+ namespace TypeIIRMLMath
+diff --git a/include/TypeIIRMLStep2IntermediateProfiles.h b/include/TypeIIRMLStep2IntermediateProfiles.h
+index 6b4c2de..88ce48a 100644
+--- a/include/TypeIIRMLStep2IntermediateProfiles.h
++++ b/include/TypeIIRMLStep2IntermediateProfiles.h
+@@ -49,8 +49,8 @@
+ #define __TypeIIRMLStep2IntermediateTimeProfiles__
+ 
+ 
+-#include <TypeIIRMLPolynomial.h>
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLMath.h>
+ 
+ 
+ namespace TypeIIRMLMath
+diff --git a/include/TypeIIRMLStep2Profiles.h b/include/TypeIIRMLStep2Profiles.h
+index 9692596..e177533 100644
+--- a/include/TypeIIRMLStep2Profiles.h
++++ b/include/TypeIIRMLStep2Profiles.h
+@@ -52,8 +52,8 @@
+ #define __TypeIIRMLStep2Profiles__
+ 
+ 
+-#include <TypeIIRMLPolynomial.h>
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLMath.h>
+ 
+ 
+ namespace TypeIIRMLMath
+diff --git a/include/TypeIIRMLStep2WithoutSynchronization.h b/include/TypeIIRMLStep2WithoutSynchronization.h
+index eec681a..a35b419 100644
+--- a/include/TypeIIRMLStep2WithoutSynchronization.h
++++ b/include/TypeIIRMLStep2WithoutSynchronization.h
+@@ -49,9 +49,9 @@
+ #define __TypeIIRMLStep2WithoutSynchronization__
+ 
+ 
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLPolynomial.h>
+ 
+ 
+ namespace TypeIIRMLMath
+diff --git a/include/TypeIIRMLVelocity.h b/include/TypeIIRMLVelocity.h
+index ebd6ad0..b881b8f 100644
+--- a/include/TypeIIRMLVelocity.h
++++ b/include/TypeIIRMLVelocity.h
+@@ -50,11 +50,11 @@
+ #define __TypeIIRMLVelocity__
+ 
+ 
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLVector.h>
+-#include <TypeIIRMLPolynomial.h>
+-#include <RMLVelocityFlags.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLVector.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/RMLVelocityFlags.h>
+ 
+ 
+ 
+diff --git a/src/RMLPositionSampleApplications/01_RMLPositionSampleApplication.cpp b/src/RMLPositionSampleApplications/01_RMLPositionSampleApplication.cpp
+index 0a88bc2..8505f06 100644
+--- a/src/RMLPositionSampleApplications/01_RMLPositionSampleApplication.cpp
++++ b/src/RMLPositionSampleApplications/01_RMLPositionSampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLPositionFlags.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLPositionFlags.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/RMLPositionSampleApplications/02_RMLPositionSampleApplication.cpp b/src/RMLPositionSampleApplications/02_RMLPositionSampleApplication.cpp
+index 319f446..7e3d9f3 100644
+--- a/src/RMLPositionSampleApplications/02_RMLPositionSampleApplication.cpp
++++ b/src/RMLPositionSampleApplications/02_RMLPositionSampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLPositionFlags.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLPositionFlags.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/RMLPositionSampleApplications/03_RMLPositionSampleApplication.cpp b/src/RMLPositionSampleApplications/03_RMLPositionSampleApplication.cpp
+index 15082eb..7b5dcac 100644
+--- a/src/RMLPositionSampleApplications/03_RMLPositionSampleApplication.cpp
++++ b/src/RMLPositionSampleApplications/03_RMLPositionSampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLPositionFlags.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLPositionFlags.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/RMLPositionSampleApplications/07_RMLPositionSampleApplication.cpp b/src/RMLPositionSampleApplications/07_RMLPositionSampleApplication.cpp
+index b397dcc..777fa12 100644
+--- a/src/RMLPositionSampleApplications/07_RMLPositionSampleApplication.cpp
++++ b/src/RMLPositionSampleApplications/07_RMLPositionSampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLPositionFlags.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLPositionFlags.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/RMLVelocitySampleApplications/04_RMLVelocitySampleApplication.cpp b/src/RMLVelocitySampleApplications/04_RMLVelocitySampleApplication.cpp
+index 5bcdc9f..8925c7d 100644
+--- a/src/RMLVelocitySampleApplications/04_RMLVelocitySampleApplication.cpp
++++ b/src/RMLVelocitySampleApplications/04_RMLVelocitySampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLVelocityFlags.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLVelocityFlags.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/RMLVelocitySampleApplications/05_RMLVelocitySampleApplication.cpp b/src/RMLVelocitySampleApplications/05_RMLVelocitySampleApplication.cpp
+index 10e1332..8bfa9ca 100644
+--- a/src/RMLVelocitySampleApplications/05_RMLVelocitySampleApplication.cpp
++++ b/src/RMLVelocitySampleApplications/05_RMLVelocitySampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLVelocityFlags.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLVelocityFlags.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/RMLVelocitySampleApplications/06_RMLVelocitySampleApplication.cpp b/src/RMLVelocitySampleApplications/06_RMLVelocitySampleApplication.cpp
+index 782faa7..99d7165 100644
+--- a/src/RMLVelocitySampleApplications/06_RMLVelocitySampleApplication.cpp
++++ b/src/RMLVelocitySampleApplications/06_RMLVelocitySampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLVelocityFlags.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLVelocityFlags.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/RMLVelocitySampleApplications/08_RMLVelocitySampleApplication.cpp b/src/RMLVelocitySampleApplications/08_RMLVelocitySampleApplication.cpp
+index f96f92a..d558966 100644
+--- a/src/RMLVelocitySampleApplications/08_RMLVelocitySampleApplication.cpp
++++ b/src/RMLVelocitySampleApplications/08_RMLVelocitySampleApplication.cpp
+@@ -41,10 +41,10 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#include <ReflexxesAPI.h>
+-#include <RMLVelocityFlags.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLVelocityFlags.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
+ 
+ 
+ //*************************************************************************
+diff --git a/src/TypeIIRML/ReflexxesAPI.cpp b/src/TypeIIRML/ReflexxesAPI.cpp
+index 681e178..05b4d85 100644
+--- a/src/TypeIIRML/ReflexxesAPI.cpp
++++ b/src/TypeIIRML/ReflexxesAPI.cpp
+@@ -43,15 +43,15 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <ReflexxesAPI.h>
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLVelocity.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
+-#include <RMLPositionFlags.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLVelocityFlags.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLVelocity.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
++#include <RML/RMLPositionFlags.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLVelocityFlags.h>
+ 
+ 
+ //****************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLCalculatePositionalExtrems.cpp b/src/TypeIIRML/TypeIIRMLCalculatePositionalExtrems.cpp
+index fffd0b5..8a3e944 100644
+--- a/src/TypeIIRML/TypeIIRMLCalculatePositionalExtrems.cpp
++++ b/src/TypeIIRML/TypeIIRMLCalculatePositionalExtrems.cpp
+@@ -41,11 +41,11 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLPolynomial.h>
+-#include <RMLPositionOutputParameters.h>
+-#include <RMLPositionInputParameters.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/RMLPositionOutputParameters.h>
++#include <RML/RMLPositionInputParameters.h>
+ 
+ 
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLDecisionTree1A.cpp b/src/TypeIIRML/TypeIIRMLDecisionTree1A.cpp
+index 550ad16..4dd5d53 100644
+--- a/src/TypeIIRML/TypeIIRMLDecisionTree1A.cpp
++++ b/src/TypeIIRML/TypeIIRMLDecisionTree1A.cpp
+@@ -42,12 +42,12 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLDecisionTree1A.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <TypeIIRMLStep1IntermediateProfiles.h>
+-#include <TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLDecisionTree1A.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/TypeIIRMLStep1IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
+ 
+ 
+ //************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLDecisionTree1B.cpp b/src/TypeIIRML/TypeIIRMLDecisionTree1B.cpp
+index 212b506..a546b61 100644
+--- a/src/TypeIIRML/TypeIIRMLDecisionTree1B.cpp
++++ b/src/TypeIIRML/TypeIIRMLDecisionTree1B.cpp
+@@ -42,11 +42,11 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLDecisionTree1B.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <TypeIIRMLStep1IntermediateProfiles.h>
+-#include <TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLDecisionTree1B.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/TypeIIRMLStep1IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
+ 
+ 
+ //************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLDecisionTree1C.cpp b/src/TypeIIRML/TypeIIRMLDecisionTree1C.cpp
+index 6427be3..dec78cc 100644
+--- a/src/TypeIIRML/TypeIIRMLDecisionTree1C.cpp
++++ b/src/TypeIIRML/TypeIIRMLDecisionTree1C.cpp
+@@ -42,12 +42,12 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLDecisionTree1C.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <TypeIIRMLStep1IntermediateProfiles.h>
+-#include <TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLDecisionTree1C.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/TypeIIRMLStep1IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
+ 
+ 
+ //************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLDecisionTree2.cpp b/src/TypeIIRML/TypeIIRMLDecisionTree2.cpp
+index bbb27c3..1b309b9 100644
+--- a/src/TypeIIRML/TypeIIRMLDecisionTree2.cpp
++++ b/src/TypeIIRML/TypeIIRMLDecisionTree2.cpp
+@@ -42,12 +42,12 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLDecisionTree2.h>
+-#include <TypeIIRMLStep2Profiles.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <TypeIIRMLStep2IntermediateProfiles.h>
+-#include <TypeIIRMLStep2Profiles.h>
++#include <RML/TypeIIRMLDecisionTree2.h>
++#include <RML/TypeIIRMLStep2Profiles.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/TypeIIRMLStep2IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep2Profiles.h>
+ 
+ 
+ //************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLDecisions.cpp b/src/TypeIIRML/TypeIIRMLDecisions.cpp
+index d4138f2..6ecd1f7 100644
+--- a/src/TypeIIRML/TypeIIRMLDecisions.cpp
++++ b/src/TypeIIRML/TypeIIRMLDecisions.cpp
+@@ -42,8 +42,8 @@
+ 
+ 
+ 
+-#include <TypeIIRMLDecisions.h>
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/TypeIIRMLMath.h>
+ 
+ 
+ //************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLFallBackStrategy.cpp b/src/TypeIIRML/TypeIIRMLFallBackStrategy.cpp
+index e27123a..a13150b 100644
+--- a/src/TypeIIRML/TypeIIRMLFallBackStrategy.cpp
++++ b/src/TypeIIRML/TypeIIRMLFallBackStrategy.cpp
+@@ -41,14 +41,14 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
+-#include <RMLVector.h>
+-#include <RMLVelocityFlags.h>
+-#include <TypeIIRMLVelocity.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
++#include <RML/RMLVector.h>
++#include <RML/RMLVelocityFlags.h>
++#include <RML/TypeIIRMLVelocity.h>
+ 
+ 
+ //*******************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLIsPhaseSynchronizationPossible.cpp b/src/TypeIIRML/TypeIIRMLIsPhaseSynchronizationPossible.cpp
+index bb192f9..14d51fe 100644
+--- a/src/TypeIIRML/TypeIIRMLIsPhaseSynchronizationPossible.cpp
++++ b/src/TypeIIRML/TypeIIRMLIsPhaseSynchronizationPossible.cpp
+@@ -41,11 +41,11 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLStep1IntermediateProfiles.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <RMLPositionInputParameters.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLStep1IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/RMLPositionInputParameters.h>
+ 
+ using namespace TypeIIRMLMath;
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLPolynomial.cpp b/src/TypeIIRML/TypeIIRMLPolynomial.cpp
+index b6c49ac..80f2230 100644
+--- a/src/TypeIIRML/TypeIIRMLPolynomial.cpp
++++ b/src/TypeIIRML/TypeIIRMLPolynomial.cpp
+@@ -43,8 +43,8 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPolynomial.h>
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLMath.h>
+ 
+ 
+ //************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLPosition.cpp b/src/TypeIIRML/TypeIIRMLPosition.cpp
+index 847f9eb..8f06b38 100644
+--- a/src/TypeIIRML/TypeIIRMLPosition.cpp
++++ b/src/TypeIIRML/TypeIIRMLPosition.cpp
+@@ -41,14 +41,14 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLMath.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
+-#include <RMLVector.h>
+-#include <ReflexxesAPI.h>
+-#include <RMLPositionFlags.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
++#include <RML/RMLVector.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLPositionFlags.h>
+ 
+ using namespace TypeIIRMLMath;
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLQuicksort.cpp b/src/TypeIIRML/TypeIIRMLQuicksort.cpp
+index 1e9d7cf..7f00c4d 100644
+--- a/src/TypeIIRML/TypeIIRMLQuicksort.cpp
++++ b/src/TypeIIRML/TypeIIRMLQuicksort.cpp
+@@ -42,7 +42,7 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLQuicksort.h>
++#include <RML/TypeIIRMLQuicksort.h>
+ 
+ 
+ //************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLSetupModifiedSelectionVector.cpp b/src/TypeIIRML/TypeIIRMLSetupModifiedSelectionVector.cpp
+index b1f1596..da19825 100644
+--- a/src/TypeIIRML/TypeIIRMLSetupModifiedSelectionVector.cpp
++++ b/src/TypeIIRML/TypeIIRMLSetupModifiedSelectionVector.cpp
+@@ -41,9 +41,9 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLVector.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLVector.h>
+ 
+ 
+ //****************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLStep1.cpp b/src/TypeIIRML/TypeIIRMLStep1.cpp
+index dc4db85..a2bbbad 100644
+--- a/src/TypeIIRML/TypeIIRMLStep1.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep1.cpp
+@@ -41,17 +41,17 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLStep1IntermediateProfiles.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLQuicksort.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <TypeIIRMLDecisionTree1A.h>
+-#include <TypeIIRMLDecisionTree1B.h>
+-#include <TypeIIRMLDecisionTree1C.h>
+-#include <RMLPositionInputParameters.h>
+-#include <ReflexxesAPI.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLStep1IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLQuicksort.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/TypeIIRMLDecisionTree1A.h>
++#include <RML/TypeIIRMLDecisionTree1B.h>
++#include <RML/TypeIIRMLDecisionTree1C.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/ReflexxesAPI.h>
+ 
+ using namespace TypeIIRMLMath;
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLStep1IntermediateProfiles.cpp b/src/TypeIIRML/TypeIIRMLStep1IntermediateProfiles.cpp
+index 6e2f1ac..c194265 100644
+--- a/src/TypeIIRML/TypeIIRMLStep1IntermediateProfiles.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep1IntermediateProfiles.cpp
+@@ -43,7 +43,7 @@
+ 
+ 
+ 
+-#include <TypeIIRMLStep1IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep1IntermediateProfiles.h>
+ 
+ 
+ using namespace TypeIIRMLMath;
+diff --git a/src/TypeIIRML/TypeIIRMLStep1Profiles.cpp b/src/TypeIIRML/TypeIIRMLStep1Profiles.cpp
+index 0ff7310..3999e28 100644
+--- a/src/TypeIIRML/TypeIIRMLStep1Profiles.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep1Profiles.cpp
+@@ -43,8 +43,8 @@
+ 
+ 
+ 
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLMath.h>
+ #include <math.h>
+ 
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLStep2.cpp b/src/TypeIIRML/TypeIIRMLStep2.cpp
+index 0632a29..90d6886 100644
+--- a/src/TypeIIRML/TypeIIRMLStep2.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep2.cpp
+@@ -40,12 +40,12 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisionTree2.h>
+-#include <TypeIIRMLStep2WithoutSynchronization.h>
+-#include <RMLPositionInputParameters.h>
+-#include <ReflexxesAPI.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisionTree2.h>
++#include <RML/TypeIIRMLStep2WithoutSynchronization.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/ReflexxesAPI.h>
+ 
+ 
+ using namespace TypeIIRMLMath;
+diff --git a/src/TypeIIRML/TypeIIRMLStep2IntermediateProfiles.cpp b/src/TypeIIRML/TypeIIRMLStep2IntermediateProfiles.cpp
+index 4f3d05f..fa9de64 100644
+--- a/src/TypeIIRML/TypeIIRMLStep2IntermediateProfiles.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep2IntermediateProfiles.cpp
+@@ -41,10 +41,10 @@
+ //   please use a tab width of four characters.
+ //  ----------------------------------------------------------
+ 
+-#include <TypeIIRMLStep2IntermediateProfiles.h>
+-#include <TypeIIRMLPolynomial.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLStep1IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep2IntermediateProfiles.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLStep1IntermediateProfiles.h>
+ 
+ using namespace TypeIIRMLMath;
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLStep2PhaseSynchronization.cpp b/src/TypeIIRML/TypeIIRMLStep2PhaseSynchronization.cpp
+index 06d4bff..ddbdb73 100644
+--- a/src/TypeIIRML/TypeIIRMLStep2PhaseSynchronization.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep2PhaseSynchronization.cpp
+@@ -40,9 +40,9 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisionTree2.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisionTree2.h>
+ 
+ using namespace TypeIIRMLMath;
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLStep2Profiles.cpp b/src/TypeIIRML/TypeIIRMLStep2Profiles.cpp
+index 5daa37d..eaafa1f 100644
+--- a/src/TypeIIRML/TypeIIRMLStep2Profiles.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep2Profiles.cpp
+@@ -42,9 +42,9 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLStep2Profiles.h>
+-#include <TypeIIRMLPolynomial.h>
+-#include <TypeIIRMLMath.h>
++#include <RML/TypeIIRMLStep2Profiles.h>
++#include <RML/TypeIIRMLPolynomial.h>
++#include <RML/TypeIIRMLMath.h>
+ #include <math.h>
+ 
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLStep2WithoutSynchronization.cpp b/src/TypeIIRML/TypeIIRMLStep2WithoutSynchronization.cpp
+index d17d61e..8ce2901 100644
+--- a/src/TypeIIRML/TypeIIRMLStep2WithoutSynchronization.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep2WithoutSynchronization.cpp
+@@ -42,13 +42,13 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLStep2WithoutSynchronization.h>
+-#include <TypeIIRMLStep1Profiles.h>
+-#include <TypeIIRMLDecisionTree2.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <TypeIIRMLStep2Profiles.h>
+-#include <TypeIIRMLStep2IntermediateProfiles.h>
++#include <RML/TypeIIRMLStep2WithoutSynchronization.h>
++#include <RML/TypeIIRMLStep1Profiles.h>
++#include <RML/TypeIIRMLDecisionTree2.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/TypeIIRMLStep2Profiles.h>
++#include <RML/TypeIIRMLStep2IntermediateProfiles.h>
+ 
+ 
+ //****************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLStep3.cpp b/src/TypeIIRML/TypeIIRMLStep3.cpp
+index 37735e6..884d26e 100644
+--- a/src/TypeIIRML/TypeIIRMLStep3.cpp
++++ b/src/TypeIIRML/TypeIIRMLStep3.cpp
+@@ -41,11 +41,11 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLPosition.h>
+-#include <TypeIIRMLMath.h>
+-#include <RMLPositionInputParameters.h>
+-#include <RMLPositionOutputParameters.h>
+-#include <ReflexxesAPI.h>
++#include <RML/TypeIIRMLPosition.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/RMLPositionInputParameters.h>
++#include <RML/RMLPositionOutputParameters.h>
++#include <RML/ReflexxesAPI.h>
+ 
+ 
+ //*******************************************************************************************
+diff --git a/src/TypeIIRML/TypeIIRMLVelocity.cpp b/src/TypeIIRML/TypeIIRMLVelocity.cpp
+index 8ceb96c..356e541 100644
+--- a/src/TypeIIRML/TypeIIRMLVelocity.cpp
++++ b/src/TypeIIRML/TypeIIRMLVelocity.cpp
+@@ -41,14 +41,14 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLVelocity.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLVector.h>
+-#include <ReflexxesAPI.h>
+-#include <RMLVelocityFlags.h>
++#include <RML/TypeIIRMLVelocity.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLVector.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLVelocityFlags.h>
+ 
+ 
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLVelocityCalculatePositionalExtrems.cpp b/src/TypeIIRML/TypeIIRMLVelocityCalculatePositionalExtrems.cpp
+index 6615f99..14a9257 100644
+--- a/src/TypeIIRML/TypeIIRMLVelocityCalculatePositionalExtrems.cpp
++++ b/src/TypeIIRML/TypeIIRMLVelocityCalculatePositionalExtrems.cpp
+@@ -41,12 +41,12 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLVelocity.h>
+-#include <TypeIIRMLMath.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLVector.h>
+-#include <ReflexxesAPI.h>
++#include <RML/TypeIIRMLVelocity.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLVector.h>
++#include <RML/ReflexxesAPI.h>
+ 
+ 
+ using namespace TypeIIRMLMath;
+diff --git a/src/TypeIIRML/TypeIIRMLVelocityFallBackStrategy.cpp b/src/TypeIIRML/TypeIIRMLVelocityFallBackStrategy.cpp
+index 9bc7da7..c47d6ea 100644
+--- a/src/TypeIIRML/TypeIIRMLVelocityFallBackStrategy.cpp
++++ b/src/TypeIIRML/TypeIIRMLVelocityFallBackStrategy.cpp
+@@ -41,9 +41,9 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLVelocity.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
++#include <RML/TypeIIRMLVelocity.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
+ 
+ 
+ using namespace TypeIIRMLMath;
+diff --git a/src/TypeIIRML/TypeIIRMLVelocityIsPhaseSynchronizationPossible.cpp b/src/TypeIIRML/TypeIIRMLVelocityIsPhaseSynchronizationPossible.cpp
+index 56856bb..78de76d 100644
+--- a/src/TypeIIRML/TypeIIRMLVelocityIsPhaseSynchronizationPossible.cpp
++++ b/src/TypeIIRML/TypeIIRMLVelocityIsPhaseSynchronizationPossible.cpp
+@@ -41,13 +41,13 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLVelocity.h>
+-#include <TypeIIRMLMath.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLVector.h>
+-#include <ReflexxesAPI.h>
+-#include <RMLVelocityFlags.h>
++#include <RML/TypeIIRMLVelocity.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLVector.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLVelocityFlags.h>
+ 
+ 
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLVelocityMethods.cpp b/src/TypeIIRML/TypeIIRMLVelocityMethods.cpp
+index e4c144d..baa8878 100644
+--- a/src/TypeIIRML/TypeIIRMLVelocityMethods.cpp
++++ b/src/TypeIIRML/TypeIIRMLVelocityMethods.cpp
+@@ -41,14 +41,14 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLVelocity.h>
+-#include <TypeIIRMLMath.h>
+-#include <TypeIIRMLDecisions.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVelocityOutputParameters.h>
+-#include <RMLVector.h>
+-#include <ReflexxesAPI.h>
+-#include <RMLVelocityFlags.h>
++#include <RML/TypeIIRMLVelocity.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/TypeIIRMLDecisions.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVelocityOutputParameters.h>
++#include <RML/RMLVector.h>
++#include <RML/ReflexxesAPI.h>
++#include <RML/RMLVelocityFlags.h>
+ #include <math.h>
+ 
+ 
+diff --git a/src/TypeIIRML/TypeIIRMLVelocitySetupPhaseSyncSelectionVector.cpp b/src/TypeIIRML/TypeIIRMLVelocitySetupPhaseSyncSelectionVector.cpp
+index b704ad9..606ba8c 100644
+--- a/src/TypeIIRML/TypeIIRMLVelocitySetupPhaseSyncSelectionVector.cpp
++++ b/src/TypeIIRML/TypeIIRMLVelocitySetupPhaseSyncSelectionVector.cpp
+@@ -41,10 +41,10 @@
+ //  ----------------------------------------------------------
+ 
+ 
+-#include <TypeIIRMLVelocity.h>
+-#include <TypeIIRMLMath.h>
+-#include <RMLVelocityInputParameters.h>
+-#include <RMLVector.h>
++#include <RML/TypeIIRMLVelocity.h>
++#include <RML/TypeIIRMLMath.h>
++#include <RML/RMLVelocityInputParameters.h>
++#include <RML/RMLVector.h>
+ 
+ 
+ using namespace TypeIIRMLMath;
