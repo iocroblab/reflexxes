@@ -1,0 +1,5 @@
+# The project is called Reflexxes and the libraries are called
+# The Reflexxes Motion Libraries. The package containts
+# Type II version of the Library. The Type IV is propietary.
+# To simplify names I have adopted the reflexxes as package name.
+package-name-doesnt-match-sonames libReflexxesTypeII1
