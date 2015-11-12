@@ -19,18 +19,20 @@ CMAKE_FLAGS = \
         -DCMAKE_SKIP_INSTALL_RPATH=TRUE
 
 %:
-	dh $@ --builddirectory=build --buildsystem=cmake --parallel
+	dh $@ --builddirectory=build --buildsystem=cmake --parallel --with quilt
 
 
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
 override_dh_auto_configure:
-	mkdir build
+	mkdir -p build
+	ln -s include RML
 	dh_auto_configure --builddirectory=build -- $(CMAKE_FLAGS) $(CMAKE_ARCH_FLAGS)
 
 override_dh_clean:
 	rm -rf build
+	rm -rf RML
 	dh_clean
 
 override_dh_install:
