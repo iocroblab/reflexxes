@@ -22,21 +22,21 @@ index 0000000..19ef8a5
 +project(REFLEXXES)
 +cmake_minimum_required(VERSION 2.6)
 +
-+set(REFLEXXES_VERSION_MAJOR 1)
-+set(REFLEXXES_VERSION_MINOR 2)
-+set(REFLEXXES_VERSION_PATCH 6)
++set(RML_VERSION_MAJOR 1)
++set(RML_VERSION_MINOR 2)
++set(RML_VERSION_PATCH 6)
 +
 +include_directories(include)
 +include(GNUInstallDirs)
 +
-+file( GLOB REFLEXXES_INCLUDES ${PROJECT_SOURCE_DIR}/include/*.h )
-+file( GLOB REFLEXXES_SRC ${PROJECT_SOURCE_DIR}/src/TypeIIRML/*.cpp )
++file( GLOB RML_INCLUDES ${PROJECT_SOURCE_DIR}/include/*.h )
++file( GLOB RML_SRC ${PROJECT_SOURCE_DIR}/src/TypeIIRML/*.cpp )
 +
-+add_library(Reflexxes SHARED ${REFLEXXES_SRC})
++add_library(Reflexxes SHARED ${RML_SRC})
 +set_target_properties( Reflexxes PROPERTIES
 +  VERSION
-+"${REFLEXXES_VERSION_MAJOR}.${REFLEXXES_VERSION_MINOR}.${REFLEXXES_VERSION_PATCH}"
-+  SOVERSION "${REFLEXXES_VERSION_MAJOR}"
++"${RML_VERSION_MAJOR}.${RML_VERSION_MINOR}.${RML_VERSION_PATCH}"
++  SOVERSION "${RML_VERSION_MAJOR}"
 +  OUTPUT_NAME ReflexxesTypeII
 +# Set accumulated compilation flags: (.so and .a)
 +  LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}"
@@ -76,7 +76,7 @@ index 0000000..19ef8a5
 +target_link_libraries(08_RMLVelocitySampleApplication Reflexxes)
 +
 +
-+install(FILES ${REFLEXXES_INCLUDES} DESTINATION include/RML)
++install(FILES ${RML_INCLUDES} DESTINATION include/RML)
 +install(TARGETS Reflexxes DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Reflexxes)
 +
 +
