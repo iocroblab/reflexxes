@@ -1,4 +1,3 @@
-0001-Added-symbolic-link.patch
 0002-Added-CMakeList-project-to-build.patch
 0003-CMakeLists-updated.patch
 0004-Added-static-library-and-better-install-places.patch
