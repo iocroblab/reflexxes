@@ -9,7 +9,7 @@ Subject: Added the pc.in file
 
 diff --git a/reflexxes.pc.in b/reflexxes.pc.in
 new file mode 100644
-index 0000000..d3e18e2
+index 0000000..b4f2382
 --- /dev/null
 +++ b/reflexxes.pc.in
 @@ -0,0 +1,12 @@

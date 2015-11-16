@@ -1,0 +1,33 @@
+From: Leopold Palomo-Avellaneda <leopold.palomo@upc.edu>
+Date: Mon, 16 Nov 2015 16:30:29 +0100
+Subject: Patch to add Config.cmake file
+
+---
+ reflexxesConfig.cmake.in | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 reflexxesConfig.cmake.in
+
+diff --git a/reflexxesConfig.cmake.in b/reflexxesConfig.cmake.in
+new file mode 100644
+index 0000000..ffe2e28
+--- /dev/null
++++ b/reflexxesConfig.cmake.in
+@@ -0,0 +1,18 @@
++# - Config file for the Reflexxes package
++# It defines the following variables
++#  RML_INCLUDE_DIRS - include directories for Reflexxes
++#  RML_LIBRARIES    - libraries to link against
++#  RML_LIBRARIES_STATIC - static version of the library
++#
++
++@PACKAGE_INIT@
++
++SET_AND_CHECK(RML_INCLUDE_DIR @PACKAGE_RML_DIRNAME_include@ )
++
++IF(NOT TARGET reflexxes)
++  INCLUDE(${CMAKE_CURRENT_LIST_DIR}/RMLExports.cmake)
++ENDIF()
++
++SET(RML_INCLUDE_DIRS ${RML_INCLUDE_DIR} )
++SET(RML_LIBRARIES ReflexxesTypeII)
++SET(RML_LIBRARIES_STATIC ReflexxesTypeII.a)

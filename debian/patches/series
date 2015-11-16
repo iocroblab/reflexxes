@@ -1,1 +1,3 @@
-0008-Added-the-pc.in-file.patch
+0001-Added-the-pc.in-file.patch
+0002-Patch-to-add-CMakeLists.patch
+0003-Patch-to-add-Config.cmake-file.patch
