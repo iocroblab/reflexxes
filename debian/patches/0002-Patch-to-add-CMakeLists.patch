@@ -85,8 +85,8 @@ index 0000000..e184852
 +target_link_libraries(08_RMLVelocitySampleApplication Reflexxes)
 +
 +install(TARGETS Reflexxes Reflexxes_static EXPORT RMLExports
-+    LIBRARY DESTINATION lib
-+    ARCHIVE DESTINATION lib
++    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 +    RUNTIME DESTINATION bin
 +    INCLUDES DESTINATION include/RML)
 +
