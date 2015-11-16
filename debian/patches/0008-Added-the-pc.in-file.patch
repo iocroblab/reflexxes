@@ -21,7 +21,7 @@ index 0000000..d3e18e2
 + 
 +Name: @PKG_NAME@ 
 +Description: @PKG_DESC@ 
-+Version: @REFLEXXES_VERSION@ 
++Version: @RML_VERSION@ 
 +Requires: @PKG_EXTERNAL_DEPS@ 
 +Libs: -L${libdir} @PKG_REFLEXXES_LIBS@ 
 +Cflags: -I${includedir} 

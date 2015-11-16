@@ -1,7 +1,1 @@
-0002-Added-CMakeList-project-to-build.patch
-0003-CMakeLists-updated.patch
-0004-Added-static-library-and-better-install-places.patch
-0005-Move-to-RML-include-dir.patch
-0006-Correct-include-path.patch
-0007-Added-pkgconfig-stuff.patch
 0008-Added-the-pc.in-file.patch
